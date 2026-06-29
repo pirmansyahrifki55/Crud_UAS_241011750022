@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php -S 0.0.0.0:${PORT} -t public"
+startCommand = "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public server.php"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
