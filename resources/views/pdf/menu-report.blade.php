@@ -107,10 +107,15 @@
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td class="image-cell">
                         @php
-                            $path = storage_path('app/public/' . $menu->gambar);
-                            $type = pathinfo($path, PATHINFO_EXTENSION);
-                            $data = file_exists($path) ? file_get_contents($path) : '';
-                            $base64 = $data ? 'data:image/' . $type . ';base64,' . base64_encode($data) : '';
+                            $base64 = '';
+                            if (!empty($menu->gambar)) {
+                                $path = storage_path('app/public/' . $menu->gambar);
+                                if (is_file($path)) {
+                                    $type = pathinfo($path, PATHINFO_EXTENSION);
+                                    $data = file_get_contents($path);
+                                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                                }
+                            }
                         @endphp
                         @if($base64)
                             <img src="{{ $base64 }}" alt="Gambar" style="width: 50px; height: 50px; object-fit: cover;">
