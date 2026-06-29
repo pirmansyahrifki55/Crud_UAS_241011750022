@@ -1,2 +1,6 @@
 *
 !.gitignore
+!images/
+!menus/
+!images/**
+!menus/**
