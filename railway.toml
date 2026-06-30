@@ -1,6 +1,6 @@
 
 [deploy]
-startCommand = "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && mkdir -p storage/app/public && php artisan storage:link && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public server.php"
+startCommand = "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && mkdir -p storage/app/public && php artisan storage:link --force && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public server.php"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
